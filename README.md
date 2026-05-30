@@ -18,7 +18,7 @@ No installs needed for end users — just upload, process, and download.
 
 ## 🚀 Live Demo
 
-> 🔗 [Launch App on Streamlit Cloud](#) ← *(replace with your deployed URL)*
+> 🔗 [Launch App on Streamlit Cloud](https://pdf-toolkit-project.streamlit.app/)
 
 ---
 
@@ -37,6 +37,11 @@ No installs needed for end users — just upload, process, and download.
 pdf_toolkit/
 ├── app.py                  # Main Streamlit app
 ├── requirements.txt
+├── screenshots/            # App screenshots
+│   ├── extract.png
+│   ├── merge.png
+│   ├── split.png
+│   └── watermark.png
 ├── utils/
 │   ├── __init__.py
 │   ├── merge.py            # Merge logic
@@ -52,7 +57,7 @@ pdf_toolkit/
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/pdf-toolkit.git
+git clone https://github.com/danixh-95/pdf-toolkit.git
 cd pdf-toolkit
 
 # 2. Create and activate a virtual environment
@@ -66,7 +71,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The app opens at **http://localhost:8501**
+The app opens at **https://pdf-toolkit-project.streamlit.app/**
 
 ---
 
@@ -81,7 +86,17 @@ The app opens at **http://localhost:8501**
 
 ## 📸 Screenshots
 
-> *(Add screenshots here after running the app)*
+### 🔀 Merge PDFs
+![Merge PDFs](screenshots/merge.png)
+
+### ✂️ Split PDF
+![Split PDF](screenshots/split.png)
+
+### 📝 Extract Text
+![Extract Text](screenshots/extract.png)
+
+### 💧 Add Watermark
+![Add Watermark](screenshots/watermark.png)
 
 ---
 
@@ -95,5 +110,5 @@ The app opens at **http://localhost:8501**
 
 ## 👤 Author
 
-**Your Name**  
-[GitHub](https://github.com/YOUR_USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR_PROFILE)
+**Danish Arshad**  
+[GitHub](https://github.com/danixh-95) · [LinkedIn](www.linkedin.com/in/danish-arshad095)
