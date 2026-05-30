@@ -32,7 +32,7 @@ st.markdown("""
 *, *::before, *::after { box-sizing: border-box; }
 
 /* Global Styling Overrides */
-html, body, [class*="css"], .stApp {
+html, body, .stApp {
     font-family: 'Inter', sans-serif;
     background: #050816 !important;
     color: #FFFFFF !important;
@@ -481,7 +481,7 @@ div[role="radiogroup"] label:has(input:checked) span {
     color: rgba(255, 255, 255, 0.4);
     font-size: 0.8rem;
 }
-.move-btn-wrapper .stButton > button {
+.sequence-container .stButton > button {
     background: rgba(255, 255, 255, 0.04) !important;
     color: rgba(255, 255, 255, 0.8) !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
@@ -492,7 +492,7 @@ div[role="radiogroup"] label:has(input:checked) span {
     box-shadow: none !important;
     transform: none !important;
 }
-.move-btn-wrapper .stButton > button:hover {
+.sequence-container .stButton > button:hover {
     background: rgba(124, 58, 237, 0.2) !important;
     border-color: rgba(124, 58, 237, 0.4) !important;
     color: #FFFFFF !important;
@@ -689,6 +689,7 @@ with col:
             </div>
             """, unsafe_allow_html=True)
 
+            st.markdown('<div class="sequence-container">', unsafe_allow_html=True)
             for i, f in enumerate(st.session_state.merge_files):
                 c1, c2 = st.columns([8, 2])
                 with c1:
@@ -700,7 +701,6 @@ with col:
                     </div>
                     """, unsafe_allow_html=True)
                 with c2:
-                    st.markdown('<div class="move-btn-wrapper">', unsafe_allow_html=True)
                     sub1, sub2 = st.columns(2)
                     with sub1:
                         if st.button("▲", key=f"up_{i}_{f.name}"):
@@ -712,7 +712,7 @@ with col:
                             if i < len(st.session_state.merge_files) - 1:
                                 st.session_state.merge_files[i], st.session_state.merge_files[i+1] = st.session_state.merge_files[i+1], st.session_state.merge_files[i]
                                 st.rerun()
-                    st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown('</div>', unsafe_allow_html=True)
 
             st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
 
