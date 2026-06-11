@@ -34,7 +34,7 @@ No installs needed for end users — just upload, process, and download.
 ## 📁 Project Structure
 
 ```
-pdf_toolkit/
+Pdf-Toolkit/
 ├── app.py                  # Main Streamlit app
 ├── requirements.txt
 ├── screenshots/            # App screenshots
@@ -111,4 +111,4 @@ The app opens at **https://pdf-toolkit-project.streamlit.app/**
 ## 👤 Author
 
 **Danish Arshad**  
-[GitHub](https://github.com/danixh-95) · [LinkedIn](www.linkedin.com/in/danish-arshad095)
+[GitHub](https://github.com/danixh-95) · [LinkedIn](https://www.linkedin.com/in/danish-arshad095)

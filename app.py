@@ -23,7 +23,7 @@ if "stats" not in st.session_state:
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -44,12 +44,24 @@ html, body, .stApp {
     z-index: -1;
 }
 
+header[data-testid="stHeader"] {
+    background-color: rgba(5, 8, 22, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
 section[data-testid="stSidebar"] {
     background: rgba(10, 12, 26, 0.95) !important;
     backdrop-filter: blur(24px) !important;
     border-right: 1px solid rgba(255,255,255,0.06) !important;
 }
-section[data-testid="stSidebar"] * { color: rgba(255,255,255,0.85) !important; }
+
+section[data-testid="stSidebar"] .stMarkdown,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] span {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
 
 div[role="radiogroup"] label {
     display: flex !important;
@@ -75,11 +87,11 @@ div[role="radiogroup"] label:has(input:checked) {
 
 .sidebar-logo-title {
     font-family: 'Syne', sans-serif;
-    font-size: 1.45rem;
+    font-size: 1.6rem;
     font-weight: 800;
-    background: linear-gradient(135deg, #a78bfa, #06B6D4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background: linear-gradient(135deg, #a78bfa 0%, #06B6D4 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
     letter-spacing: -0.5px;
     text-align: center;
     padding-top: 1.5rem;
@@ -135,53 +147,71 @@ div[role="radiogroup"] label:has(input:checked) {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
+    gap: 20px;
     margin-bottom: 3rem;
 }
 .stat-card {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 16px;
-    padding: 16px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: rgba(255,255,255,0.02) !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 16px !important;
+    padding: 1.5rem 1rem !important;
+    text-align: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(5px) !important;
+    transition: all 0.3s ease-in-out !important;
+}
+.stat-card:hover {
+    transform: translateY(-5px) !important;
+    border-color: rgba(6, 182, 212, 0.3) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.1) !important;
 }
 .stat-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(6,182,212,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(6,182,212,0.4), transparent);
 }
-.stat-icon { font-size: 1.2rem; margin-bottom: 6px; }
+.stat-icon { font-size: 1.5rem; margin-bottom: 8px; }
 .stat-value {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.55rem;
-    font-weight: 800;
-    color: #FFFFFF;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    line-height: 1.2 !important;
 }
 .stat-label {
-    font-size: 0.7rem;
-    color: rgba(255,255,255,0.4);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-top: 4px;
+    font-size: 0.75rem !important;
+    color: rgba(255,255,255,0.5) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    margin-top: 6px !important;
+    font-weight: 600 !important;
 }
 
-.glass-card {
-    background: rgba(15,23,42,0.4);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 24px;
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 1rem;
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background: rgba(15, 23, 42, 0.4) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 24px !important;
+    padding: 2.5rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    margin-bottom: 1.5rem !important;
 }
-.glass-card::before {
+div[data-testid="stVerticalBlockBorderWrapper"] > div {
+    border: none !important;
+}
+div[data-testid="stVerticalBlockBorderWrapper"]::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, transparent, rgba(124,58,237,0.4), rgba(6,182,212,0.3), transparent);
+    z-index: 10;
 }
 
 .section-header {
@@ -218,17 +248,36 @@ div[role="radiogroup"] label:has(input:checked) {
 }
 
 [data-testid="stFileUploader"] {
-    background: rgba(15,23,42,0.5) !important;
-    border: 2px dashed rgba(124,58,237,0.25) !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+[data-testid="stFileUploaderDropzone"] {
+    background: rgba(10, 15, 30, 0.6) !important;
+    border: 2px dashed rgba(124, 58, 237, 0.3) !important;
     border-radius: 16px !important;
     padding: 2rem !important;
     transition: all 0.3s ease !important;
 }
-[data-testid="stFileUploader"]:hover {
+[data-testid="stFileUploaderDropzone"]:hover {
     border-color: #06B6D4 !important;
-    background: rgba(124,58,237,0.04) !important;
+    background: rgba(124, 58, 237, 0.05) !important;
 }
-[data-testid="stFileUploader"] * { color: rgba(255,255,255,0.65) !important; }
+[data-testid="stFileUploaderDropzone"] * {
+    color: #FFFFFF !important;
+}
+[data-testid="stFileUploaderDropzone"] button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+    padding: 6px 14px !important;
+    transition: all 0.2s ease !important;
+}
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: #06B6D4 !important;
+}
 
 .uploader-status-bar {
     display: flex;
@@ -243,26 +292,41 @@ div[role="radiogroup"] label:has(input:checked) {
     color: #06B6D4;
 }
 
-.stButton > button {
+.stButton > button, 
+div[data-testid="stFormSubmitButton"] > button,
+div[data-testid="stBaseButton-secondary"] button,
+div[data-testid="stBaseButton-primary"] button,
+button[data-testid="stBaseButton-secondary"],
+button[data-testid="stBaseButton-primary"] {
     background: linear-gradient(135deg, #7C3AED, #06B6D4) !important;
     color: #FFFFFF !important;
     border: none !important;
     border-radius: 12px !important;
     padding: 0.8rem 2.2rem !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Outfit', sans-serif !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
     width: 100% !important;
     transition: all 0.3s ease !important;
     box-shadow: 0 4px 20px rgba(124,58,237,0.2) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
-.stButton > button:hover {
+.stButton > button:hover,
+button[data-testid="stBaseButton-secondary"]:hover,
+button[data-testid="stBaseButton-primary"]:hover {
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 30px rgba(124,58,237,0.4) !important;
+    border-color: transparent !important;
 }
-.stButton > button:active { transform: scale(0.97) !important; }
+.stButton > button:active,
+button[data-testid="stBaseButton-secondary"]:active,
+button[data-testid="stBaseButton-primary"]:active {
+    transform: scale(0.97) !important;
+}
 
-.sequence-container .stButton > button {
+.sequence-container button {
     background: rgba(255,255,255,0.04) !important;
     color: rgba(255,255,255,0.8) !important;
     border: 1px solid rgba(255,255,255,0.06) !important;
@@ -271,10 +335,13 @@ div[role="radiogroup"] label:has(input:checked) {
     font-size: 0.85rem !important;
     box-shadow: none !important;
     transform: none !important;
+    width: auto !important;
+    display: inline-block !important;
 }
-.sequence-container .stButton > button:hover {
+.sequence-container button:hover {
     background: rgba(124,58,237,0.2) !important;
     border-color: rgba(124,58,237,0.4) !important;
+    transform: none !important;
 }
 
 [data-testid="stDownloadButton"] > button {
@@ -282,7 +349,7 @@ div[role="radiogroup"] label:has(input:checked) {
     color: #06B6D4 !important;
     border: 1px solid rgba(6,182,212,0.25) !important;
     border-radius: 12px !important;
-    font-family: 'Syne', sans-serif !important;
+    font-family: 'Outfit', sans-serif !important;
     font-weight: 700 !important;
     width: 100% !important;
     padding: 0.8rem 2.2rem !important;
@@ -293,17 +360,39 @@ div[role="radiogroup"] label:has(input:checked) {
     transform: translateY(-2px) !important;
 }
 
-.stNumberInput input, .stTextInput input, .stTextArea textarea {
-    background: rgba(15,23,42,0.6) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-    border-radius: 12px !important;
+div[data-testid="stTextInput"] input,
+div[data-testid="stNumberInput"] input,
+div[data-testid="stTextArea"] textarea,
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea {
+    background-color: rgba(15, 23, 42, 0.7) !important;
     color: #FFFFFF !important;
-    font-family: 'Inter', sans-serif !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
     padding: 10px 14px !important;
+    font-family: 'Inter', sans-serif !important;
 }
-.stNumberInput input:focus, .stTextInput input:focus, .stTextArea textarea:focus {
+div[data-testid="stTextInput"] input:focus,
+div[data-testid="stNumberInput"] input:focus,
+div[data-testid="stTextArea"] textarea:focus,
+.stTextInput input:focus,
+.stNumberInput input:focus,
+.stTextArea textarea:focus {
     border-color: #06B6D4 !important;
-    box-shadow: 0 0 10px rgba(6,182,212,0.2) !important;
+    box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2) !important;
+    background-color: rgba(15, 23, 42, 0.9) !important;
+}
+div[data-testid="stTextInput"] label,
+div[data-testid="stNumberInput"] label,
+div[data-testid="stTextArea"] label {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 6px !important;
+}
+::placeholder {
+    color: rgba(255, 255, 255, 0.35) !important;
 }
 
 .file-chip {
@@ -349,6 +438,15 @@ div[role="radiogroup"] label:has(input:checked) {
     justify-content: center;
     overflow: hidden;
     margin-top: 0.5rem;
+    position: relative;
+}
+
+div[data-testid="stSlider"] [data-testid="stThumb"] {
+    background-color: #06B6D4 !important;
+    border: 2px solid #7C3AED !important;
+}
+div[data-testid="stSlider"] [data-testid="stTrack"] {
+    background: linear-gradient(90deg, #7C3AED, #06B6D4) !important;
 }
 
 .fx-success {
@@ -471,262 +569,250 @@ with col:
     # ── 1. MERGE ──────────────────────────────────────────────────────────────
     if "Merge" in tool:
         section_header("🔀", "Merge PDFs", "Combine multiple PDF files into one unified document")
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        with st.container(border=True):
+            if "merge_files" not in st.session_state:
+                st.session_state.merge_files = []
+                st.session_state.last_uploaded_files = []
 
-        if "merge_files" not in st.session_state:
-            st.session_state.merge_files = []
-            st.session_state.last_uploaded_files = []
+            uploaded_files = st.file_uploader(
+                "Drop your PDF files here",
+                type="pdf",
+                accept_multiple_files=True,
+                key="merge_uploader",
+            )
 
-        uploaded_files = st.file_uploader(
-            "Drop your PDF files here",
-            type="pdf",
-            accept_multiple_files=True,
-            key="merge_uploader",
-        )
+            uploaded_ids = [f.name + str(f.size) for f in (uploaded_files or [])]
+            last_ids     = [f.name + str(f.size) for f in st.session_state.last_uploaded_files]
+            if set(uploaded_ids) != set(last_ids):
+                st.session_state.merge_files = list(uploaded_files) if uploaded_files else []
+                st.session_state.last_uploaded_files = list(uploaded_files) if uploaded_files else []
 
-        uploaded_ids = [f.name + str(f.size) for f in (uploaded_files or [])]
-        last_ids     = [f.name + str(f.size) for f in st.session_state.last_uploaded_files]
-        if set(uploaded_ids) != set(last_ids):
-            st.session_state.merge_files = list(uploaded_files) if uploaded_files else []
-            st.session_state.last_uploaded_files = list(uploaded_files) if uploaded_files else []
+            if st.session_state.merge_files:
+                total_size = sum(f.size for f in st.session_state.merge_files)
+                st.markdown(f"""
+                <div class="uploader-status-bar">
+                    <span>📂 <b>{len(st.session_state.merge_files)}</b> files loaded</span>
+                    <span>⚖️ Total: <b>{total_size / (1024*1024):.2f} MB</b></span>
+                </div>
+                <div style="margin-bottom:0.8rem; font-family:'Syne',sans-serif; font-size:0.8rem;
+                            font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.08em;">
+                    MERGE SEQUENCE — drag to reorder
+                </div>
+                """, unsafe_allow_html=True)
 
-        if st.session_state.merge_files:
-            total_size = sum(f.size for f in st.session_state.merge_files)
-            st.markdown(f"""
-            <div class="uploader-status-bar">
-                <span>📂 <b>{len(st.session_state.merge_files)}</b> files loaded</span>
-                <span>⚖️ Total: <b>{total_size / (1024*1024):.2f} MB</b></span>
-            </div>
-            <div style="margin-bottom:0.8rem; font-family:'Syne',sans-serif; font-size:0.8rem;
-                        font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.08em;">
-                MERGE SEQUENCE — drag to reorder
-            </div>
-            """, unsafe_allow_html=True)
+                st.markdown('<div class="sequence-container">', unsafe_allow_html=True)
+                for i, f in enumerate(st.session_state.merge_files):
+                    c1, c2 = st.columns([8, 2])
+                    with c1:
+                        st.markdown(f"""
+                        <div class="file-chip">
+                            <span class="file-index">{i+1}</span>
+                            <span class="file-name">📄 {f.name}</span>
+                            <span class="file-size">({f.size/1024:.1f} KB)</span>
+                        </div>
+                        """, unsafe_allow_html=True)
+                    with c2:
+                        s1, s2 = st.columns(2)
+                        with s1:
+                            if st.button("▲", key=f"up_{i}_{f.name}"):
+                                if i > 0:
+                                    st.session_state.merge_files[i], st.session_state.merge_files[i-1] = \
+                                        st.session_state.merge_files[i-1], st.session_state.merge_files[i]
+                                    st.rerun()
+                        with s2:
+                            if st.button("▼", key=f"dn_{i}_{f.name}"):
+                                if i < len(st.session_state.merge_files) - 1:
+                                    st.session_state.merge_files[i], st.session_state.merge_files[i+1] = \
+                                        st.session_state.merge_files[i+1], st.session_state.merge_files[i]
+                                    st.rerun()
+                st.markdown('</div>', unsafe_allow_html=True)
+                st.markdown("<div style='margin-top:1.5rem'></div>", unsafe_allow_html=True)
 
-            st.markdown('<div class="sequence-container">', unsafe_allow_html=True)
-            for i, f in enumerate(st.session_state.merge_files):
-                c1, c2 = st.columns([8, 2])
-                with c1:
-                    st.markdown(f"""
-                    <div class="file-chip">
-                        <span class="file-index">{i+1}</span>
-                        <span class="file-name">📄 {f.name}</span>
-                        <span class="file-size">({f.size/1024:.1f} KB)</span>
-                    </div>
-                    """, unsafe_allow_html=True)
-                with c2:
-                    s1, s2 = st.columns(2)
-                    with s1:
-                        if st.button("▲", key=f"up_{i}_{f.name}"):
-                            if i > 0:
-                                st.session_state.merge_files[i], st.session_state.merge_files[i-1] = \
-                                    st.session_state.merge_files[i-1], st.session_state.merge_files[i]
-                                st.rerun()
-                    with s2:
-                        if st.button("▼", key=f"dn_{i}_{f.name}"):
-                            if i < len(st.session_state.merge_files) - 1:
-                                st.session_state.merge_files[i], st.session_state.merge_files[i+1] = \
-                                    st.session_state.merge_files[i+1], st.session_state.merge_files[i]
-                                st.rerun()
-            st.markdown('</div>', unsafe_allow_html=True)
-            st.markdown("<div style='margin-top:1.5rem'></div>", unsafe_allow_html=True)
-
-        if st.button("🔀  Merge Now"):
-            if not st.session_state.merge_files or len(st.session_state.merge_files) < 2:
-                error("Please upload at least 2 PDF files to merge.")
-            else:
-                with st.spinner("Fusing documents…"):
-                    tmp_paths = []
-                    for f in st.session_state.merge_files:
-                        tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-                        tmp.write(f.read()); tmp.close()
-                        tmp_paths.append(tmp.name)
-                    out_path = merge_pdfs(tmp_paths)
-                    try:
-                        pages_count = len(PdfReader(out_path).pages)
-                    except Exception:
-                        pages_count = 0
-                    st.session_state.stats["files_uploaded"] += len(st.session_state.merge_files)
-                    st.session_state.stats["pages_processed"] += pages_count
-                    st.session_state.stats["operations_completed"] += 1
-                    with open(out_path, "rb") as out:
-                        st.download_button("⬇  Download Merged PDF", out,
-                                           file_name="merged.pdf", mime="application/pdf")
-                    success(f"{len(st.session_state.merge_files)} PDFs merged successfully.")
-                    for p in tmp_paths: os.unlink(p)
-
-        st.markdown('</div>', unsafe_allow_html=True)
+            if st.button("🔀  Merge Now"):
+                if not st.session_state.merge_files or len(st.session_state.merge_files) < 2:
+                    error("Please upload at least 2 PDF files to merge.")
+                else:
+                    with st.spinner("Fusing documents…"):
+                        tmp_paths = []
+                        for f in st.session_state.merge_files:
+                            tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+                            tmp.write(f.read()); tmp.close()
+                            tmp_paths.append(tmp.name)
+                        out_path = merge_pdfs(tmp_paths)
+                        try:
+                            pages_count = len(PdfReader(out_path).pages)
+                        except Exception:
+                            pages_count = 0
+                        st.session_state.stats["files_uploaded"] += len(st.session_state.merge_files)
+                        st.session_state.stats["pages_processed"] += pages_count
+                        st.session_state.stats["operations_completed"] += 1
+                        with open(out_path, "rb") as out:
+                            st.download_button("⬇  Download Merged PDF", out,
+                                               file_name="merged.pdf", mime="application/pdf")
+                        success(f"{len(st.session_state.merge_files)} PDFs merged successfully.")
+                        for p in tmp_paths: os.unlink(p)
 
     # ── 2. SPLIT ──────────────────────────────────────────────────────────────
     elif "Split" in tool:
         section_header("✂️", "Split PDF", "Extract a specific page range into a new standalone file")
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        with st.container(border=True):
+            file = st.file_uploader("Drop your PDF here", type="pdf")
 
-        file = st.file_uploader("Drop your PDF here", type="pdf")
+            if file:
+                try:
+                    total_pages = len(PdfReader(file).pages)
+                except Exception:
+                    total_pages = 1
 
-        if file:
-            try:
-                total_pages = len(PdfReader(file).pages)
-            except Exception:
-                total_pages = 1
+                st.markdown(f"""
+                <div class="uploader-status-bar">
+                    <span>📄 <b>{file.name}</b></span>
+                    <span>Total Pages: <b>{total_pages}</b> &nbsp;|&nbsp; Size: <b>{file.size/1024:.1f} KB</b></span>
+                </div>
+                """, unsafe_allow_html=True)
 
-            st.markdown(f"""
-            <div class="uploader-status-bar">
-                <span>📄 <b>{file.name}</b></span>
-                <span>Total Pages: <b>{total_pages}</b> &nbsp;|&nbsp; Size: <b>{file.size/1024:.1f} KB</b></span>
-            </div>
-            """, unsafe_allow_html=True)
+                pages_range = st.slider("Select Page Range to Extract", 1, total_pages, (1, min(5, total_pages)))
+                start, end = pages_range
 
-            pages_range = st.slider("Select Page Range to Extract", 1, total_pages, (1, min(5, total_pages)))
-            start, end = pages_range
-
-            st.markdown(f"""
-            <div class="range-preview-card">
-                <div style="font-size:1.8rem;">✂️</div>
-                <div>
-                    <div style="font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:#FFFFFF;">
-                        Extracting Pages {start} – {end}
-                    </div>
-                    <div style="font-size:0.82rem; color:rgba(255,255,255,0.45); margin-top:2px;">
-                        Output will contain <b style="color:#06B6D4;">{end - start + 1}</b> page(s)
+                st.markdown(f"""
+                <div class="range-preview-card">
+                    <div style="font-size:1.8rem;">✂️</div>
+                    <div>
+                        <div style="font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:#FFFFFF;">
+                            Extracting Pages {start} – {end}
+                        </div>
+                        <div style="font-size:0.82rem; color:rgba(255,255,255,0.45); margin-top:2px;">
+                            Output will contain <b style="color:#06B6D4;">{end - start + 1}</b> page(s)
+                        </div>
                     </div>
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
 
-            if st.button("✂️  Split Now"):
-                with st.spinner("Slicing document…"):
-                    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-                    tmp.write(file.read()); tmp.close()
-                    out_path, msg = split_pdf(tmp.name, int(start), int(end))
-                    os.unlink(tmp.name)
-                    if out_path:
-                        st.session_state.stats["files_uploaded"] += 1
-                        st.session_state.stats["pages_processed"] += (int(end) - int(start) + 1)
-                        st.session_state.stats["operations_completed"] += 1
-                        with open(out_path, "rb") as out:
-                            st.download_button("⬇  Download Split PDF", out,
-                                               file_name=f"split_p{start}-p{end}.pdf",
-                                               mime="application/pdf")
-                        success(f"Pages {int(start)}–{int(end)} extracted successfully.")
-                    else:
-                        error(msg)
-
-        st.markdown('</div>', unsafe_allow_html=True)
+                if st.button("✂️  Split Now"):
+                    with st.spinner("Slicing document…"):
+                        tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+                        tmp.write(file.read()); tmp.close()
+                        out_path, msg = split_pdf(tmp.name, int(start), int(end))
+                        os.unlink(tmp.name)
+                        if out_path:
+                            st.session_state.stats["files_uploaded"] += 1
+                            st.session_state.stats["pages_processed"] += (int(end) - int(start) + 1)
+                            st.session_state.stats["operations_completed"] += 1
+                            with open(out_path, "rb") as out:
+                                st.download_button("⬇  Download Split PDF", out,
+                                                   file_name=f"split_p{start}-p{end}.pdf",
+                                                   mime="application/pdf")
+                            success(f"Pages {int(start)}–{int(end)} extracted successfully.")
+                        else:
+                            error(msg)
 
     # ── 3. EXTRACT ────────────────────────────────────────────────────────────
     elif "Extract" in tool:
         section_header("📝", "Extract Text", "Pull all readable text from any PDF document")
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        with st.container(border=True):
+            file = st.file_uploader("Drop your PDF here", type="pdf")
 
-        file = st.file_uploader("Drop your PDF here", type="pdf")
+            if file:
+                st.markdown(f"""
+                <div class="uploader-status-bar">
+                    <span>📄 <b>{file.name}</b></span>
+                    <span>⚖️ Size: <b>{file.size/1024:.1f} KB</b></span>
+                </div>
+                """, unsafe_allow_html=True)
 
-        if file:
-            st.markdown(f"""
-            <div class="uploader-status-bar">
-                <span>📄 <b>{file.name}</b></span>
-                <span>⚖️ Size: <b>{file.size/1024:.1f} KB</b></span>
-            </div>
-            """, unsafe_allow_html=True)
+                if st.button("📝  Extract Text"):
+                    with st.spinner("Reading document…"):
+                        tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+                        tmp.write(file.read()); tmp.close()
+                        text = extract_text(tmp.name)
+                        os.unlink(tmp.name)
 
-            if st.button("📝  Extract Text"):
-                with st.spinner("Reading document…"):
-                    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-                    tmp.write(file.read()); tmp.close()
-                    text = extract_text(tmp.name)
-                    os.unlink(tmp.name)
+                        if text.strip():
+                            word_count = len(text.split())
+                            char_count = len(text)
 
-                    if text.strip():
-                        word_count = len(text.split())
-                        char_count = len(text)
+                            st.session_state.stats["files_uploaded"] += 1
+                            st.session_state.stats["words_extracted"] += word_count
+                            st.session_state.stats["operations_completed"] += 1
 
-                        st.session_state.stats["files_uploaded"] += 1
-                        st.session_state.stats["words_extracted"] += word_count
-                        st.session_state.stats["operations_completed"] += 1
-
-                        st.markdown(f"""
-                        <div class="stats-grid" style="margin:1.5rem 0; grid-template-columns: repeat(2,1fr);">
-                            <div class="stat-card">
-                                <div class="stat-value">{word_count:,}</div>
-                                <div class="stat-label">Words Extracted</div>
+                            st.markdown(f"""
+                            <div class="stats-grid" style="margin:1.5rem 0; grid-template-columns: repeat(2,1fr);">
+                                <div class="stat-card">
+                                    <div class="stat-value">{word_count:,}</div>
+                                    <div class="stat-label">Words Extracted</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value">{char_count:,}</div>
+                                    <div class="stat-label">Characters</div>
+                                </div>
                             </div>
-                            <div class="stat-card">
-                                <div class="stat-value">{char_count:,}</div>
-                                <div class="stat-label">Characters</div>
-                            </div>
-                        </div>
-                        """, unsafe_allow_html=True)
+                            """, unsafe_allow_html=True)
 
-                        st.text_area("Extracted Content", text, height=380, label_visibility="visible")
-                        st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
-                        st.download_button("⬇  Download as .txt", text,
-                                           file_name="extracted.txt", mime="text/plain")
-                        success("Text extracted successfully.")
-                    else:
-                        error("No readable text found. This PDF may be image-based or scanned.")
-
-        st.markdown('</div>', unsafe_allow_html=True)
+                            st.text_area("Extracted Content", text, height=380, label_visibility="visible")
+                            st.markdown("<div style='margin-top:1rem'></div>", unsafe_allow_html=True)
+                            st.download_button("⬇  Download as .txt", text,
+                                               file_name="extracted.txt", mime="text/plain")
+                            success("Text extracted successfully.")
+                        else:
+                            error("No readable text found. This PDF may be image-based or scanned.")
 
     # ── 4. WATERMARK ──────────────────────────────────────────────────────────
     elif "Watermark" in tool:
         section_header("💧", "Add Watermark", "Stamp a diagonal text watermark across every page")
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        with st.container(border=True):
+            file = st.file_uploader("Drop your PDF here", type="pdf")
 
-        file = st.file_uploader("Drop your PDF here", type="pdf")
-
-        if file:
-            st.markdown(f"""
-            <div class="uploader-status-bar">
-                <span>📄 <b>{file.name}</b></span>
-                <span>⚖️ Size: <b>{file.size/1024:.1f} KB</b></span>
-            </div>
-            """, unsafe_allow_html=True)
-
-        c1, c2 = st.columns([1, 1])
-        with c1:
-            st.markdown("<div style='margin-bottom:0.5rem; font-family:\"Syne\",sans-serif; font-size:0.8rem; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.08em;'>CONFIGURATION</div>", unsafe_allow_html=True)
-            wm_text  = st.text_input("Watermark Text", placeholder="e.g.  CONFIDENTIAL  ·  DRAFT")
-            opacity  = st.slider("Opacity",   0.05, 1.0, 0.25, 0.05)
-            fontsize = st.slider("Font Size", 20,   80,  40,   5)
-
-        with c2:
-            st.markdown("<div style='margin-bottom:0.5rem; font-family:\"Syne\",sans-serif; font-size:0.8rem; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.08em;'>LIVE PREVIEW</div>", unsafe_allow_html=True)
-            preview_text = wm_text if wm_text else "PREVIEW"
-            st.markdown(f"""
-            <div class="watermark-preview-card">
-                <div style="font-family:'Syne',sans-serif; font-size:{min(fontsize,44)}px;
-                            font-weight:800; text-transform:uppercase; letter-spacing:0.1em;
-                            color:rgba(124,58,237,{opacity}); transform:rotate(-20deg);">
-                    {preview_text}
+            if file:
+                st.markdown(f"""
+                <div class="uploader-status-bar">
+                    <span>📄 <b>{file.name}</b></span>
+                    <span>⚖️ Size: <b>{file.size/1024:.1f} KB</b></span>
                 </div>
-                <div style="position:absolute; bottom:12px; font-size:0.65rem;
-                            color:rgba(255,255,255,0.25); letter-spacing:0.1em; text-transform:uppercase;">
-                    mockup preview
+                """, unsafe_allow_html=True)
+
+            c1, c2 = st.columns([1, 1])
+            with c1:
+                st.markdown("<div style='margin-bottom:0.5rem; font-family:\"Syne\",sans-serif; font-size:0.8rem; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.08em;'>CONFIGURATION</div>", unsafe_allow_html=True)
+                wm_text  = st.text_input("Watermark Text", placeholder="e.g.  CONFIDENTIAL  ·  DRAFT")
+                opacity  = st.slider("Opacity",   0.05, 1.0, 0.25, 0.05)
+                fontsize = st.slider("Font Size", 20,   80,  40,   5)
+
+            with c2:
+                st.markdown("<div style='margin-bottom:0.5rem; font-family:\"Syne\",sans-serif; font-size:0.8rem; font-weight:600; color:rgba(255,255,255,0.5); letter-spacing:0.08em;'>LIVE PREVIEW</div>", unsafe_allow_html=True)
+                preview_text = wm_text if wm_text else "PREVIEW"
+                st.markdown(f"""
+                <div class="watermark-preview-card">
+                    <div style="font-family:'Syne',sans-serif; font-size:{min(fontsize,44)}px;
+                                font-weight:800; text-transform:uppercase; letter-spacing:0.1em;
+                                color:rgba(124,58,237,{opacity}); transform:rotate(-20deg);">
+                        {preview_text}
+                    </div>
+                    <div style="position:absolute; bottom:12px; font-size:0.65rem;
+                                color:rgba(255,255,255,0.25); letter-spacing:0.1em; text-transform:uppercase;">
+                        mockup preview
+                    </div>
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
 
-        if file and wm_text:
-            st.markdown("<div style='margin-top:1.5rem'></div>", unsafe_allow_html=True)
-            if st.button("💧  Apply Watermark"):
-                with st.spinner("Stamping pages…"):
-                    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
-                    tmp.write(file.read()); tmp.close()
-                    out_path = add_watermark(tmp.name, wm_text, opacity=opacity, fontsize=fontsize)
-                    os.unlink(tmp.name)
-                    try:
-                        pages_count = len(PdfReader(out_path).pages)
-                    except Exception:
-                        pages_count = 1
-                    st.session_state.stats["files_uploaded"] += 1
-                    st.session_state.stats["pages_processed"] += pages_count
-                    st.session_state.stats["operations_completed"] += 1
-                    with open(out_path, "rb") as out:
-                        st.download_button("⬇  Download Watermarked PDF", out,
-                                           file_name="watermarked.pdf", mime="application/pdf")
-                    success(f'"{wm_text}" watermark applied to all {pages_count} page(s).')
-
-        st.markdown('</div>', unsafe_allow_html=True)
+            if file and wm_text:
+                st.markdown("<div style='margin-top:1.5rem'></div>", unsafe_allow_html=True)
+                if st.button("💧  Apply Watermark"):
+                    with st.spinner("Stamping pages…"):
+                        tmp = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+                        tmp.write(file.read()); tmp.close()
+                        out_path = add_watermark(tmp.name, wm_text, opacity=opacity, fontsize=fontsize)
+                        os.unlink(tmp.name)
+                        try:
+                            pages_count = len(PdfReader(out_path).pages)
+                        except Exception:
+                            pages_count = 1
+                        st.session_state.stats["files_uploaded"] += 1
+                        st.session_state.stats["pages_processed"] += pages_count
+                        st.session_state.stats["operations_completed"] += 1
+                        with open(out_path, "rb") as out:
+                            st.download_button("⬇  Download Watermarked PDF", out,
+                                               file_name="watermarked.pdf", mime="application/pdf")
+                        success(f'"{wm_text}" watermark applied to all {pages_count} page(s).')
 
 # ── FOOTER ────────────────────────────────────────────────────────────────────
 st.markdown("""
